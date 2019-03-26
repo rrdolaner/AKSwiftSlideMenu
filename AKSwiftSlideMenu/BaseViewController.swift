@@ -8,6 +8,8 @@
 
 import UIKit
 
+var senderTag:Int = 0
+
 class BaseViewController: UIViewController, SlideMenuDelegate {
     
     override func viewDidLoad() {
@@ -36,6 +38,12 @@ class BaseViewController: UIViewController, SlideMenuDelegate {
             self.openViewControllerBasedOnIdentifier("PlayVC")
             
             break
+        case 2:
+            print("Camera\n", terminator: "")
+            
+            self.openViewControllerBasedOnIdentifier("CameraVC")
+            
+            break
         default:
             print("default\n", terminator: "")
         }
@@ -48,6 +56,7 @@ class BaseViewController: UIViewController, SlideMenuDelegate {
         
         if (topViewController.restorationIdentifier! == destViewController.restorationIdentifier!){
             print("Same VC")
+            addSlideMenuButton()
         } else {
             self.navigationController!.pushViewController(destViewController, animated: true)
         }
@@ -85,12 +94,13 @@ class BaseViewController: UIViewController, SlideMenuDelegate {
     }
     
     @objc func onSlideMenuButtonPressed(_ sender : UIButton){
-        if (sender.tag == 10)
+        if (senderTag == 10)
         {
             // To Hide Menu If it already there
             self.slideMenuItemSelectedAtIndex(-1);
             
-            sender.tag = 0;
+            //sender.tag = 0;
+            senderTag = 0
             
             let viewMenuBack : UIView = view.subviews.last!
             
@@ -108,10 +118,10 @@ class BaseViewController: UIViewController, SlideMenuDelegate {
         }
         
         sender.isEnabled = false
-        sender.tag = 10
+        senderTag = 10
         
         let menuVC : MenuViewController = self.storyboard!.instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController
-        menuVC.btnMenu = sender
+        //menuVC.btnMenu = sender
         menuVC.delegate = self
         self.view.addSubview(menuVC.view)
         self.addChild(menuVC)
@@ -124,5 +134,28 @@ class BaseViewController: UIViewController, SlideMenuDelegate {
             menuVC.view.frame=CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height);
             sender.isEnabled = true
             }, completion:nil)
+    }
+    
+    //MARK: - opened Left Menu with ScreenEdgePanGestureRecognizer
+    func openedLeftMenu() {
+        
+        if senderTag == 0 {
+            
+            senderTag = 10;
+            
+            let menuVC : MenuViewController = self.storyboard!.instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController
+            menuVC.delegate = self
+            self.view.addSubview(menuVC.view)
+            self.addChild(menuVC)
+            menuVC.view.layoutIfNeeded()
+            
+            
+            menuVC.view.frame=CGRect(x: 0 - UIScreen.main.bounds.size.width, y: 0, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height);
+            
+            UIView.animate(withDuration: 0.3, animations: { () -> Void in
+                menuVC.view.frame=CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: UIScreen.main.bounds.size.height);
+            }, completion:nil)
+        }
+        
     }
 }

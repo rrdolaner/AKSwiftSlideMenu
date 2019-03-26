@@ -58,12 +58,15 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func updateArrayMenuOptions(){
         arrayMenuOptions.append(["title":"Home", "icon":"HomeIcon"])
         arrayMenuOptions.append(["title":"Play", "icon":"PlayIcon"])
+        arrayMenuOptions.append(["title":"Camera", "icon":"CameraIcon"])
         
         tblMenuOptions.reloadData()
     }
     
     @IBAction func onCloseMenuClick(_ button:UIButton!){
-        btnMenu.tag = 0
+        //btnMenu.tag = 0
+        
+        senderTag = 0
         
         if (self.delegate != nil) {
             var index = Int32(button.tag)

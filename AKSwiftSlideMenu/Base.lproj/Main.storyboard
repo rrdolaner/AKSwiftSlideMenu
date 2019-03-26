@@ -1,19 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DGj-7d-jfR">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="DGj-7d-jfR">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="HelveticaNeueLights.ttc">
-            <string>HelveticaNeue-Light</string>
-        </array>
-    </customFonts>
     <scenes>
         <!--AK Swift Slider Menu-->
         <scene sceneID="ufC-wZ-h7g">
@@ -23,14 +18,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <gestureRecognizers/>
                         <viewLayoutGuide key="safeArea" id="36s-7O-iPe"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="jo7-nm-iiB" appends="YES" id="HEG-ad-km0"/>
+                        </connections>
                     </view>
-                    <navigationItem key="navigationItem" title="AK Swift Slider Menu" id="a1u-Ki-tSz"/>
+                    <navigationItem key="navigationItem" title="AK Swift Slider Menu" id="a1u-Ki-tSz">
+                        <barButtonItem key="backBarButtonItem" title=" " id="SaK-X8-yyR"/>
+                    </navigationItem>
                     <connections>
+                        <outlet property="constrainMenuLeft" destination="jo7-nm-iiB" id="xdW-1H-zhn"/>
                         <segue destination="khG-SL-0rk" kind="show" identifier="pushToPlay" id="WvG-AQ-ekI"/>
+                        <segue destination="aft-Vb-d7N" kind="show" id="jVv-Qx-qKN"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+                <screenEdgePanGestureRecognizer minimumNumberOfTouches="1" id="jo7-nm-iiB">
+                    <rectEdge key="edges" left="YES"/>
+                </screenEdgePanGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1110.4000000000001" y="305.84707646176912"/>
         </scene>
@@ -41,14 +47,43 @@
                     <view key="view" contentMode="scaleToFill" id="8Tm-V4-HTY">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Play VC" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VA8-G7-ta9">
+                                <rect key="frame" x="158" y="323" width="59" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="57G-TB-5q4"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Play" id="f24-Ia-thn"/>
+                    <navigationItem key="navigationItem" title="Play" id="f24-Ia-thn">
+                        <barButtonItem key="backBarButtonItem" title=" " id="uAC-Lk-z2D"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="mmn-PL-HS6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1862" y="305"/>
+        </scene>
+        <!--Camera-->
+        <scene sceneID="VCd-TF-1D5">
+            <objects>
+                <viewController restorationIdentifier="CameraVC" storyboardIdentifier="CameraVC" id="aft-Vb-d7N" customClass="CameraVC" customModule="AKSwiftSlideMenu" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="MOM-Ej-85b">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="U8c-9p-A0p"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Camera" id="xaF-ni-DnX">
+                        <barButtonItem key="backBarButtonItem" title=" " id="t9w-Kg-q29"/>
+                    </navigationItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KVh-NX-u4I" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1862" y="1046"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="nrt-yR-DmY">
@@ -112,7 +147,7 @@
                                                     </constraints>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q60-3k-XSH">
-                                                    <rect key="frame" x="54" y="16" width="253" height="21"/>
+                                                    <rect key="frame" x="54" y="16.5" width="253" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="AXc-yo-Msu"/>
                                                     </constraints>

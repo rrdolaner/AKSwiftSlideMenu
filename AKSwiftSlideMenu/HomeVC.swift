@@ -10,10 +10,19 @@ import UIKit
 
 class HomeVC: BaseViewController {
 
+    @IBOutlet var constrainMenuLeft: UIScreenEdgePanGestureRecognizer!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         addSlideMenuButton()
-        // Do any additional setup after loading the view.
+        
+        /*
+         Left to right screen with finger is used to open the menu during the drawing phase.
+         */
+        constrainMenuLeft = UIScreenEdgePanGestureRecognizer(target: self,
+                                                                action: #selector(leftMenuOpen))
+        constrainMenuLeft.edges = .left
+        view.addGestureRecognizer(constrainMenuLeft)
     }
 
     override func didReceiveMemoryWarning() {
@@ -21,6 +30,19 @@ class HomeVC: BaseViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        print("again add menubutton")
+        //addSlideMenuButton()
+    }
+    
+    @objc func leftMenuOpen(sender: UIScreenEdgePanGestureRecognizer) {
+        if sender.state == .ended {
+            openedLeftMenu()
+        }
+        
+        //let translation = sender.translation(in: sender.view!)
+        //print("Trans:\(translation)")
+    }
 
     /*
     // MARK: - Navigation

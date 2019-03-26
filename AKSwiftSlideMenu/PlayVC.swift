@@ -12,8 +12,9 @@ class PlayVC: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        addSlideMenuButton()
-        // Do any additional setup after loading the view.
+        /*If you want the menu icon to be open, you can use it.
+         You must not use the Back button to be turned on.*/
+        //addSlideMenuButton()
     }
 
     override func didReceiveMemoryWarning() {
